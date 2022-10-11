@@ -1,0 +1,13 @@
+@import "variables.scss";
+@import "v-main-wrapper.scss";
+@import "v-cart.scss";
+@import "v-catalog.scss";
+@import "v-catalog-item.scss";
+
+.btn {
+  border-radius: $radius;
+}
+
+body {
+  background: aquamarine;
+}
