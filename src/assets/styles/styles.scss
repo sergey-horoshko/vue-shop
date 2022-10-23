@@ -3,13 +3,17 @@
 @import "v-cart.scss";
 @import "v-catalog.scss";
 @import "v-catalog-item.scss";
+@import "v-cart-item.scss";
 
 .btn {
   border-radius: $radius;
 }
 
 .v-catalog-item {
-  border-radius: $radius;
 }
 
-body {}
+h2 {
+  font-size: 36px;
+  line-height: 120%;
+  margin: 30px auto;
+}
