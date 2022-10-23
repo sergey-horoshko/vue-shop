@@ -3,9 +3,10 @@
     <h2>Catalog</h2>
     <div class="v-catalog__list">
       <v-catalog-item
-        v-for="product in products"
+        v-for="product in PRODUCTS"
         :key="product.article"
         :product_data="product"
+        @addToCart="addToCart"
       />
     </div>
   </div>
@@ -13,6 +14,7 @@
 
 <script>
   import vCatalogItem from './v-catalog-item'
+  import {mapActions, mapGetters} from 'vuex'
 
   export default {
     name: "v-catalog",
@@ -20,52 +22,29 @@
       vCatalogItem,
     },
     data() {
-      return {
-        products: [
-          {
-            image: "1.jpg",
-            name: "T-shirt 1",
-            price: 100,
-            article: "T1",
-            available: true
-          },
-          {
-            image: "2.jpg",
-            name: "T-shirt 2",
-            price: 150,
-            article: "T2",
-            available: true
-          },
-          {
-            image: "3.jpg",
-            name: "T-shirt 3",
-            price: 200,
-            article: "T3",
-            available: false
-          },
-          {
-            image: "4.jpg",
-            name: "T-shirt 4",
-            price: 350,
-            article: "T4",
-            available: true
-          },
-          {
-            image: "5.jpg",
-            name: "T-shirt 5",
-            price: 400,
-            article: "T5",
-            available: true
-          },
-          {
-            image: "6.jpg",
-            name: "T-shirt 6",
-            price: 450,
-            article: "T6",
-            available: false
+      return {}
+    },
+    computed: { 
+      ...mapGetters([
+        'PRODUCTS'
+      ]),
+    },
+    methods: {
+      ...mapActions([
+        'GET_PRODUCTS_FROM_API',
+        'ADD_TO_CART'
+      ]),
+      addToCart(data) {
+        this.ADD_TO_CART(data)
+      },
+    },
+    mounted() {
+      this.GET_PRODUCTS_FROM_API()
+        .then((response) => {
+          if (response.data) {
+            console.log('Data arrived !');
           }
-        ]
-      }
+        })
     },
   }
 </script>

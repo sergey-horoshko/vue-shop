@@ -1,8 +1,19 @@
 <template>
   <div class="v-catalog-item">
-    <p>Item 1</p>
-    <p>Price: 100</p>
-    <button>Add to cart</button>
+    <img 
+      :src="product_data.image"
+      :title="product_data.name"
+      class="v-catalog-item__img" 
+      alt="img"
+    >
+    <p class="v-catalog-item__name">{{ product_data.name }}</p>
+    <p class="v-catalog-item__price">Price: {{ product_data.price }} ₽</p>
+    <button 
+      class="v-catalog-item__add_to_cart_btn btn" 
+      @click="addToCart"
+    >
+      Add to cart
+    </button>
   </div>
 </template>
 
@@ -12,14 +23,16 @@ export default {
   props: {
     product_data: {
       type: Object,
-      default() {
-        return {}
-      }
     },
   },
   data() {
     return {}
-  }
+  },
+  methods: {
+    addToCart() {
+      this.$emit('addToCart', this.product_data);
+    },
+  },
 }
 </script>
 
